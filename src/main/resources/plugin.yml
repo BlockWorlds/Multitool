@@ -1,0 +1,5 @@
+name: Multitool
+version: 0.0.1-SNAPSHOT
+main: com.theblockworlds.multitool.Multitool
+author: ShiniOfTheGami
+authors: [DukeVindzor, AceDexter]
