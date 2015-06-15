@@ -11,6 +11,10 @@ public abstract class Tool {
 	private Material material;
 	private String name;
 	
+	public Tool(){
+		this.setParameters();
+	}
+	
 	protected void setMaterial(Material m){
 		this.material = m;
 	}
