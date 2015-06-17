@@ -7,11 +7,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 
+import com.theblockworlds.multitool.Multitool;
+
 public abstract class Tool {
 	private Material material;
 	private String name;
+	private final Multitool pl;
 	
-	public Tool(){
+	public Tool(Multitool pl){
+		this.pl = pl;
 		this.setParameters();
 	}
 	
@@ -30,8 +34,24 @@ public abstract class Tool {
 	public String getName(){
 		return this.name;
 	}
+	
+	protected int cfgLoadInt(String key, int defaultValue){
+		int temp = pl.getConfig().getInt("tools." + this.name + "." + key);
+		if(temp == 0){
+			return defaultValue;
+		}
+		return temp;
+	}
+	
+	protected String cfgLoadString(String key, String defaultValue){
+		String temp = pl.getConfig().getString("tools." + this.name + "." + key);
+		if(temp == null){
+			return defaultValue;
+		}
+		return temp;
+	}
 
-	abstract void setParameters();
+	protected abstract void setParameters();
 	public abstract void onUse(final Block targetBlock, final BlockFace face, final ItemStack itemUsed, final Player player, final Action action);
 	public abstract void onRangedUse(final Block targetBlock, final BlockFace face, final ItemStack itemUsed, final Player player, final Action action);
 }
