@@ -20,7 +20,7 @@ public class Log {
 	 * @return true if file either exists already or has been successfully created, false if an error occured
 	 */
 	public static boolean createFile(String file){
-		File f = new File(Bukkit.getPluginManager().getPlugin("RegionalTextures").getDataFolder(),file+".log");
+		File f = new File(Bukkit.getPluginManager().getPlugin("Multitool").getDataFolder(),file+".log");
 		if(f.exists() && !f.isDirectory()){
 			return true;
 		}
@@ -28,7 +28,7 @@ public class Log {
 		
 		try{
 			f.createNewFile();
-			FileWriter filewriter = new FileWriter(Bukkit.getPluginManager().getPlugin("RegionalTextures").getDataFolder() + "/" + file + ".log");
+			FileWriter filewriter = new FileWriter(Bukkit.getPluginManager().getPlugin("Multitool").getDataFolder() + "/" + file + ".log");
 			try{
 				filewriter.write("");
 			}catch (Exception e){
@@ -50,7 +50,7 @@ public class Log {
 	 * @param text ArrayList containing the lines to write to the file
 	 */
 	public static void writeTextToFile(String file, ArrayList<String> text) throws IOException{
-			File f = new File(Bukkit.getPluginManager().getPlugin("RegionalTextures").getDataFolder(),file+".log");
+			File f = new File(Bukkit.getPluginManager().getPlugin("Multitool").getDataFolder(),file+".log");
 			FileOutputStream fos = new FileOutputStream(f);			
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 			
@@ -68,7 +68,7 @@ public class Log {
 	 * @return the ArrayList parsed
 	 */
 	public static ArrayList<String> parseFile(String file){
-		File f = new File(Bukkit.getPluginManager().getPlugin("RegionalTextures").getDataFolder() + "/" + file + ".log");
+		File f = new File(Bukkit.getPluginManager().getPlugin("Multitool").getDataFolder() + "/" + file + ".log");
 		ArrayList<String> output = new ArrayList<String>();
 		try {
 			Scanner input = new Scanner(f);
