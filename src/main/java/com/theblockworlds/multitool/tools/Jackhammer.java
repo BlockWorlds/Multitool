@@ -18,10 +18,9 @@ public class Jackhammer extends Tool {
 		super(pl);
 	}
 
-	@Override
 	protected void setParameters() {
-		setMaterial(Material.getMaterial(cfgLoadString("DIAMOND_PICKAXE")));
 		setName("Jackhammer");
+		setMaterial(cfgLoadMaterial(Material.DIAMOND_PICKAXE));
 	}
 
 	@Override

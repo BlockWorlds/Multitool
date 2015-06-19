@@ -44,20 +44,13 @@ public abstract class Tool {
 		return items;
 	}
 	
-	protected int cfgLoadInt(int defaultValue){
-		int temp = pl.getConfig().getInt("tools." + this.name);
-		if(temp == 0){
+	protected Material cfgLoadMaterial(Material defaultValue){
+		String temp = pl.getConfig().getString("tools." + this.name.toLowerCase());
+		Material material = Material.getMaterial(temp == null ? null : temp.toUpperCase());
+		if(material == null){
 			return defaultValue;
-		}
-		return temp;
-	}
-	
-	protected String cfgLoadString(String defaultValue){
-		String temp = pl.getConfig().getString("tools." + this.name);
-		if(temp == null){
-			return defaultValue;
-		}
-		return temp;
+		} 
+		return material;
 	}
 	
 	protected abstract void setParameters();
