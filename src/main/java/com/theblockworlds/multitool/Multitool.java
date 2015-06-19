@@ -28,11 +28,9 @@ public class Multitool extends JavaPlugin{
 		MultiToolCommand multiToolHandler = new MultiToolCommand(this);
 		this.getCommand("multitool").setExecutor(multiToolHandler);
 		
-
-		Debugger.debug("egistering listeners!");
+		Debugger.debug("Registering listeners!");
 		this.listener = new ToolListener(this);
 	    Bukkit.getPluginManager().registerEvents(this.listener, this);
-		
 	}
 	
 	public void onDisable(){

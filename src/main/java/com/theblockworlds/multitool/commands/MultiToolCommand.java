@@ -22,7 +22,7 @@ public class MultiToolCommand extends CommandHandler {
 			return true;
 		}
 		Player p = (Player) sender;
-		if (Utils.equalsIgnoreCase(args[0], "get", "give") && args.length == 2 && p.hasPermission("multitool.get."+args[1])) {
+		if (args.length == 2 && Utils.equalsIgnoreCase(args[0], "get", "give") && p.hasPermission("multitool.get."+args[1].toLowerCase())) {
 			Tool tool = pl.getToolHandler().getTool(args[1]);
 			if (tool != null && tool.getItemStack() != null) {
 				p.getInventory().addItem(tool.getItemStack());
