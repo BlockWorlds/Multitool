@@ -7,6 +7,7 @@ import com.theblockworlds.multitool.commands.MultiToolCommand;
 import com.theblockworlds.multitool.handlers.ToolHandler;
 import com.theblockworlds.multitool.listeners.ToolListener;
 import com.theblockworlds.multitool.tools.Jackhammer;
+import com.theblockworlds.multitool.util.Debugger;
 
 public class Multitool extends JavaPlugin{
 
@@ -14,19 +15,20 @@ public class Multitool extends JavaPlugin{
 	private ToolListener listener;
 	
 	public void onEnable(){
+		Debugger.debug("LOADING MULTI TOOL CONFIG");
 		this.saveDefaultConfig();
 		
+		Debugger.debug("INITIALIZING TOOLHANDLER");
 		this.toolHandler = new ToolHandler(this);
 		
-		/* REGISTER TOOLS HERE */
+		Debugger.debug("REGISTERING TOOLS");
 		toolHandler.registerTool(new Jackhammer(this));
 		
-		/* REGISTER COMMANDS HERE */
+		Debugger.debug("REGISTERING COMMANDS");
 		MultiToolCommand multiToolHandler = new MultiToolCommand(this);
 		this.getCommand("multitool").setExecutor(multiToolHandler);
 		
-		
-		/* REGISTER LISTENERS HERE */
+		Debugger.debug("REGISTERING LISTENERS");
 		this.listener = new ToolListener(this);
 	    Bukkit.getPluginManager().registerEvents(this.listener, this);
 		
