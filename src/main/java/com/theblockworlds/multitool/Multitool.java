@@ -4,9 +4,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.theblockworlds.multitool.util.Debugger;
-import com.theblockworlds.multitool.commands.ToolsCommand;
+import com.theblockworlds.multitool.commands.MultiToolCommand;
 import com.theblockworlds.multitool.handlers.ToolHandler;
 import com.theblockworlds.multitool.listeners.ToolListener;
+import com.theblockworlds.multitool.tools.Jackhammer;
 
 public class Multitool extends JavaPlugin{
 
@@ -14,25 +15,21 @@ public class Multitool extends JavaPlugin{
 	private ToolListener listener;
 
 	public void onEnable(){
-		Debugger.debug("LOADING MULTITOOL CONFIG");
+		Debugger.debug("LOADING MULTI TOOL CONFIG!");
 		this.saveDefaultConfig();
 		
 		Debugger.debug("Initializing ToolHandler!");
 		this.toolHandler = new ToolHandler(this);
 		
-		/* REGISTER TOOLS HERE */
+		Debugger.debug("Registering tools!");
+		toolHandler.registerTool(new Jackhammer(this));
 		
+		Debugger.debug("Registering MultiToolCommand!");
+		MultiToolCommand multiToolHandler = new MultiToolCommand(this);
+		this.getCommand("multitool").setExecutor(multiToolHandler);
 		
-		/* REGISTER COMMANDS HERE */
-		Debugger.debug("Registering Tools command!");
-		ToolsCommand toolsHandler = new ToolsCommand(this);
-		this.getCommand("tools").setExecutor(toolsHandler);
-		this.getCommand("tools").setTabCompleter(toolsHandler);
-		
-		
-		/* REGISTER LISTENERS HERE */
-		
-		Debugger.debug("Registering listeners!");
+
+		Debugger.debug("egistering listeners!");
 		this.listener = new ToolListener(this);
 	    Bukkit.getPluginManager().registerEvents(this.listener, this);
 		
@@ -45,5 +42,4 @@ public class Multitool extends JavaPlugin{
 	public ToolHandler getToolHandler(){
 		return this.toolHandler;
 	}
-	
 }
