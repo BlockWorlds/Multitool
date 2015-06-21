@@ -48,17 +48,17 @@ public class Jackhammer extends Tool {
 	}
 	
 	private void performAction(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
-		MultiToolDestroyEvent destoryEvent = new MultiToolDestroyEvent(targetBlock, player);
-		Bukkit.getPluginManager().callEvent(destoryEvent);
-		if (destoryEvent.isCancelled()) {
-			return;
-		}
-		if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
+		if ((action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) && callEventSuccess(targetBlock, player, false)) {
 			targetBlock.setType(Material.AIR);
 		}
-		else {
-			destoryEvent.setNoPhyscis(true);
+		else if (callEventSuccess(targetBlock, player, true)) {
 			targetBlock.setType(Material.AIR, false);
 		}
+	}
+	
+	private boolean callEventSuccess(Block targetBlock, Player player, boolean noPhysics) {
+		MultiToolDestroyEvent destroyEvent = new MultiToolDestroyEvent(targetBlock, player, noPhysics);
+		Bukkit.getPluginManager().callEvent(destroyEvent);
+        return !destroyEvent.isCancelled();
 	}
 }
