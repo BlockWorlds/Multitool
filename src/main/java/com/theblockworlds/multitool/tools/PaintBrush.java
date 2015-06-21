@@ -28,14 +28,6 @@ public class PaintBrush extends Tool{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void onRangedUse(Block targetBlock, BlockFace face,
-			ItemStack itemUsed, Player player, Action action) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }
 
 	

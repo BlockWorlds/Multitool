@@ -12,7 +12,7 @@ import com.theblockworlds.multitool.handlers.ToolHandler;
 import com.theblockworlds.multitool.util.Utils;
 
 public class MultiToolCommand extends CommandHandler {
-	private String PERMISSIONS_PREFIX = "multitool.commands.";
+	private static final String PERMISSIONS_PREFIX = "multitool.commands.";
 	
 	public MultiToolCommand(Multitool pl) {
 		super(pl);
@@ -24,7 +24,7 @@ public class MultiToolCommand extends CommandHandler {
 			return true;
 		}
 		Player p = (Player) sender;
-		if (args.length == 2 && Utils.equalsIgnoreCase(args[0], "get", "give") && p.hasPermission(PERMISSIONS_PREFIX + args[1].toLowerCase())) {
+		if (args.length == 2 && Utils.equalsIgnoreCase(args[0], "get", "give") && p.hasPermission(PERMISSIONS_PREFIX + args[1].replace(" ", "").toLowerCase())) {
 			Tool tool = pl.getToolHandler().getTool(args[1]);
 			if (tool != null && tool.getItemStack() != null) {
 				p.getInventory().addItem(tool.getItemStack());
@@ -38,10 +38,10 @@ public class MultiToolCommand extends CommandHandler {
 			ToolHandler.toggleRange(p);
 			return true;
 		}
-		/*if (Utils.equalsIgnoreCase(args[0], "alledit", "all") && p.hasPermission(PERMISSIONS_PREFIX + "togglerange")) {
+		if (Utils.equalsIgnoreCase(args[0], "alledit", "all") && p.hasPermission(PERMISSIONS_PREFIX + "togglealledit")) {
 			ToolHandler.toggleAllBlocks(p);
 			return true;
-		}*/
+		}
 		if (args[0].equals("list") && p.hasPermission(PERMISSIONS_PREFIX + "list")) {
 			printList(sender);
 			return true;

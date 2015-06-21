@@ -29,31 +29,22 @@ public class Jackhammer extends Tool {
 
 	@Override
 	public void onUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
-		performAction(targetBlock, face, itemUsed, player, action);
-	}
-
-	@Override
-	public void onRangedUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
-		performAction(targetBlock, face, itemUsed, player, action);
-	}
-	
-	@Override
-	public ItemStack getItemStack(){
-		ItemStack items = new ItemStack(this.getMaterial(), 1, (short) -1);
-		ItemMeta meta = items.getItemMeta();
-		meta.setDisplayName(this.getName());
-		meta.setLore(Arrays.asList("Left Click to remove","Right Click to nophysics remove"));
-		items.setItemMeta(meta);
-		return items;
-	}
-	
-	private void performAction(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
 		if ((action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) && callEventSuccess(targetBlock, player, false)) {
 			targetBlock.setType(Material.AIR);
 		}
 		else if (callEventSuccess(targetBlock, player, true)) {
 			targetBlock.setType(Material.AIR, false);
 		}
+	}
+	
+	@Override
+	public ItemStack getItemStack(){
+		ItemStack items = new ItemStack(getMaterial(), 1, (short) -1);
+		ItemMeta meta = items.getItemMeta();
+		meta.setDisplayName(getName());
+		meta.setLore(Arrays.asList("Left Click to remove","Right Click to nophysics remove"));
+		items.setItemMeta(meta);
+		return items;
 	}
 	
 	private boolean callEventSuccess(Block targetBlock, Player player, boolean noPhysics) {

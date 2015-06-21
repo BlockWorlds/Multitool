@@ -22,11 +22,6 @@ public final class MultiToolDestroyEvent extends BlockEvent implements Cancellab
 		this.player = player;
 	}
 	
-	/** Constructor
-	 * 
-	 * @param block		Affected block
-	 * @param player	Player executing event
-	 */
 	public MultiToolDestroyEvent(Block block, Player player, boolean noPhysics) {
 		this(block, player);
 		this.noPhysics = noPhysics;

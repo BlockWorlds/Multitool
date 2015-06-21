@@ -25,13 +25,8 @@ public class ToolListener implements Listener{
 					hand.setAmount(64);
 				}
 			}
-			if (event.getClickedBlock() == null) {
-				this.plugin.getToolHandler().onRangedUse(event.getPlayer(), event.getItem(), event.getAction());
-			}
-			else {
-				if (this.plugin.getToolHandler().onUse(event.getPlayer(), event.getItem(), event.getAction(), event.getClickedBlock(), event.getBlockFace())) {
-					event.setCancelled(true);
-				}
+			if (this.plugin.getToolHandler().onUse(event.getPlayer(), event.getItem(), event.getAction(), event.getClickedBlock(), event.getBlockFace())) {
+				event.setCancelled(true);
 			}
 		}
 	}
