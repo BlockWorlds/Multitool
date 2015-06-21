@@ -77,7 +77,7 @@ public class ToolHandler {
 			if (tarBlock != null && previousBlock != null) {
 				final BlockFace tarFace = tarBlock.getFace(previousBlock);
 				final Tool tool = this.registeredTools.get(itemUsed.getType());
-				if (player.hasPermission(ToolHandler.RANGED_PERM_PREFIX + tool.getName().replaceAll(" ", "").toLowerCase())) {
+				if (player.hasPermission(RANGED_PERM_PREFIX + tool.getName().replaceAll(" ", "").toLowerCase())) {
 					try {
 						tool.onRangedUse(tarBlock, tarFace, itemUsed, player, action);
 						itemUsed.setDurability((short) 0);
@@ -98,7 +98,7 @@ public class ToolHandler {
 				return false;
 			}
 			final Tool tool = this.registeredTools.get(itemUsed.getType());
-			if (player.hasPermission(ToolHandler.PERM_PREFIX + tool.getName().replaceAll(" ", "").toLowerCase())) {
+			if (player.hasPermission(PERM_PREFIX + tool.getName().replaceAll(" ", "").toLowerCase())) {
 				try {
 					Validate.notNull(tarFace);
 					this.registeredTools.get(itemUsed.getType()).onUse(tarBlock, tarFace, itemUsed, player, action);

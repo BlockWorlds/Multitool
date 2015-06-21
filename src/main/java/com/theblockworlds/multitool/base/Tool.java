@@ -37,13 +37,18 @@ public abstract class Tool {
 	}
 	
 	public ItemStack getItemStack() {
-		ItemStack items = new ItemStack(this.material, 1, (short) -1);
+		ItemStack items = new ItemStack(this.material, 1);
 		ItemMeta meta = items.getItemMeta();
 		meta.setDisplayName(this.name);
 		items.setItemMeta(meta);
 		return items;
 	}
 	
+	/** Gets material either from config or the default value
+	 * 
+	 * @param defaultValue		Default material
+	 * @return					Returns material from config if material found, returns defaultValue otherwise.
+	 */
 	protected Material cfgLoadMaterial(Material defaultValue){
 		String temp = pl.getConfig().getString("tools." + this.name.toLowerCase());
 		Material material = Material.getMaterial(temp == null ? null : temp.toUpperCase());

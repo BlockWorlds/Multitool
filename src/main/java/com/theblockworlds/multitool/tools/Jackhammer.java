@@ -18,6 +18,7 @@ public class Jackhammer extends Tool {
 		super(pl);
 	}
 
+	@Override
 	protected void setParameters() {
 		setName("Jackhammer");
 		setMaterial(cfgLoadMaterial(Material.DIAMOND_PICKAXE));
@@ -34,28 +35,17 @@ public class Jackhammer extends Tool {
 	}
 	
 	private void preformAction(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
+		MultiToolDestroyEvent destoryEvent = new MultiToolDestroyEvent(targetBlock, player);
+		Bukkit.getPluginManager().callEvent(destoryEvent);
+		if (destoryEvent.isCancelled()) {
+			return;
+		}
 		if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
-			if (!callEventSuccess(targetBlock, player, false)) {
-				return;
-			}
 			targetBlock.setType(Material.AIR);
 		}
 		else {
-			if (!callEventSuccess(targetBlock, player, true)) {
-				return;
-			}
+			destoryEvent.setNoPhyscis(true);
 			targetBlock.setType(Material.AIR, false);
 		}
 	}
-	
-	
-	private boolean callEventSuccess(Block targetBlock, Player player, boolean noPhysics) {
-		MultiToolDestroyEvent destoryEvent = new MultiToolDestroyEvent(targetBlock, player, noPhysics);
-		Bukkit.getPluginManager().callEvent(destoryEvent);
-        if (destoryEvent.isCancelled()) {
-            return false;
-        }
-        return true;
-	}
-	
 }
