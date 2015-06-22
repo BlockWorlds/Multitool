@@ -50,8 +50,8 @@ public abstract class Tool {
 	 * @return					Returns material from config if material found, returns defaultValue otherwise.
 	 */
 	protected Material cfgLoadMaterial(Material defaultMaterial){
-		String temp = pl.getConfig().getString("tools." + name.toLowerCase());
-		Material material = Material.getMaterial(temp == null ? null : temp.toUpperCase());
+		String temp = pl.getConfig().getString("tools." + name.toLowerCase() + ".material");
+		Material material = Material.matchMaterial(temp);
 		if(material == null){
 			return defaultMaterial;
 		} 
@@ -59,5 +59,5 @@ public abstract class Tool {
 	}
 	
 	protected abstract void setParameters();
-	public abstract void onUse(final Block targetBlock, final BlockFace face, final ItemStack itemUsed, final Player player, final Action action);
+	public abstract boolean onUse(final Block targetBlock, final BlockFace face, final ItemStack itemUsed, final Player player, final Action action);
 }

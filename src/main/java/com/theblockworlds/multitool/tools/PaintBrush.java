@@ -23,8 +23,9 @@ public class PaintBrush extends Tool{
 	}
 
 	@Override
-	public void onUse(Block targetBlock, BlockFace face, ItemStack itemUsed,
+	public boolean onUse(Block targetBlock, BlockFace face, ItemStack itemUsed,
 			Player player, Action action) {
+				return false;
 		// TODO Auto-generated method stub
 		
 	}

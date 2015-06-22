@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
 
 import com.theblockworlds.multitool.Multitool;
 import com.theblockworlds.multitool.base.Tool;
-import com.theblockworlds.multitool.util.Debugger;
 
 public class ToolHandler {
 	private static final String RANGED_PERMISSIONS_PREFIX = "multitool.ranged.";
@@ -50,6 +49,10 @@ public class ToolHandler {
 		
 		this.registeredTools.put(t.getMaterial(), t);
 		this.plugin.getLogger().info("Registered tool: " + t.getName());
+	}
+	
+	public boolean hasToolItem(Material material) {
+		return registeredTools.containsKey(material);
 	}
 	
 	public Collection<Tool> getTools() {
@@ -93,19 +96,15 @@ public class ToolHandler {
 			Tool tool = registeredTools.get(itemUsed.getType());
 			switch(Cases.getCase(player, tarBlock, tool)) {
 			case ALL_LONG_RANGE:
-				Debugger.debug("ALL_LONG_RANGE");
 				lastBlocks = player.getLastTwoTargetBlocks(NULL_SET, 200);
 				break;
 			case LONG_RANGE:
-				Debugger.debug("LONG_RANGE");
 				lastBlocks = player.getLastTwoTargetBlocks(transparantBlocks, 200);
 				break;
 			case ALL_SHORT_RANGE:
-				Debugger.debug("ALL_SHORT_RANGE");
 				lastBlocks = player.getLastTwoTargetBlocks(NULL_SET, 5);
 				break;
 			case SHORT_RANGE:
-				Debugger.debug("SHORT_RANGE");
 				break;
 			default:
 				return false;
@@ -116,8 +115,8 @@ public class ToolHandler {
 			}
 			if (tarBlock != null && tarFace != null) {
 				try {
-					tool.onUse(tarBlock, tarFace, itemUsed, player, action);
 					itemUsed.setDurability((short) 0);
+					return tool.onUse(tarBlock, tarFace, itemUsed, player, action);
 				}
 				catch (Exception e) {
 					this.plugin.getLogger().severe("Tool Error: Could not pass ranged tool use to " + tool.getName());

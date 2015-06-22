@@ -28,13 +28,16 @@ public class Jackhammer extends Tool {
 	}
 
 	@Override
-	public void onUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
+	public boolean onUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
 		if ((action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) && callEventSuccess(targetBlock, player, false)) {
 			targetBlock.setType(Material.AIR);
+			return false;
 		}
 		else if (callEventSuccess(targetBlock, player, true)) {
 			targetBlock.setType(Material.AIR, false);
+			return false;
 		}
+		return true;
 	}
 	
 	@Override
@@ -42,7 +45,7 @@ public class Jackhammer extends Tool {
 		ItemStack items = new ItemStack(getMaterial(), 1, (short) -1);
 		ItemMeta meta = items.getItemMeta();
 		meta.setDisplayName(getName());
-		meta.setLore(Arrays.asList("Left Click to remove","Right Click to nophysics remove"));
+		meta.setLore(Arrays.asList("Left Click to remove","Right Click to no-physics remove"));
 		items.setItemMeta(meta);
 		return items;
 	}
