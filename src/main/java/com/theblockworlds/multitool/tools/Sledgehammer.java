@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import com.theblockworlds.multitool.Multitool;
 import com.theblockworlds.multitool.base.Tool;
 import com.theblockworlds.multitool.events.MultiToolMoveEvent;
-import com.theblockworlds.multitool.util.Utils;
+import com.theblockworlds.multitool.util.BlockDataHelper;
 
 public class Sledgehammer extends Tool {
 
@@ -40,21 +40,12 @@ public class Sledgehammer extends Tool {
 
 	@Override
 	public boolean onUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
-		if (player.isSneaking()) {
-			if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
-				return moveBlock(targetBlock, face, player, true, true);
-			}
-			else {
-				return moveBlock(targetBlock, face, player, true, false);
-			}
+		boolean forceMove = player.isSneaking();
+		if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
+			return moveBlock(targetBlock, face, player, forceMove, true);
 		}
 		else {
-			if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
-				return moveBlock(targetBlock, face, player, false, true);
-			}
-			else {
-				return moveBlock(targetBlock, face, player, false, false);
-			}
+			return moveBlock(targetBlock, face, player, forceMove, false);
 		}
 	}
 	
@@ -64,9 +55,8 @@ public class Sledgehammer extends Tool {
 		MultiToolMoveEvent moveEvent = new MultiToolMoveEvent(targetBlock, face, player);
 		Bukkit.getPluginManager().callEvent(moveEvent);
 		if ((forceMove || destinationBlock.isEmpty()) && !moveEvent.isCancelled()) {
-			Utils.setTypeAndData(destinationBlock, targetBlock, false);
+			BlockDataHelper.setTypeAndData(destinationBlock, targetBlock, false, true);
 			targetBlock.setType(Material.AIR, false);
-			return false;
 		}
 		return true;
 	}

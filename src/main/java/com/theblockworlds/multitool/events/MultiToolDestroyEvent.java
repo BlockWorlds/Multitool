@@ -12,7 +12,7 @@ public final class MultiToolDestroyEvent extends BlockEvent implements Cancellab
 	private boolean noPhysics;
 	private boolean cancelled;
 	
-	/** Constructor where no-physics is false by default
+	/** Instantiate a MultiToolDestroyEvent where no-physics is false by default
 	 * 
 	 * @param block		Affected block
 	 * @param player	Player executing event

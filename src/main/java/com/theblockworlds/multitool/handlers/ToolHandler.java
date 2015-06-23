@@ -40,21 +40,6 @@ public class ToolHandler {
 		transparantBlocks.add(Material.LAVA);
 	}
 	
-	public void registerTool(Tool t) {
-		Validate.notNull(t, "You cannot register null tools");
-		Validate.notNull(t.getMaterial(), "You cannot register tools without a tool material");
-		Validate.notNull(t.getName(), "You cannot register tools with no name");
-		Validate.isTrue(!t.getName().isEmpty(), "You cannot register tools with no name");
-		Validate.isTrue(!this.registeredTools.containsKey(t.getMaterial()), "You cannot register multiple tools with the same material");
-		
-		this.registeredTools.put(t.getMaterial(), t);
-		this.plugin.getLogger().info("Registered tool: " + t.getName());
-	}
-	
-	public boolean hasToolItem(Material material) {
-		return registeredTools.containsKey(material);
-	}
-	
 	public Collection<Tool> getTools() {
 		return registeredTools.values();
 	}
@@ -68,17 +53,26 @@ public class ToolHandler {
 	    return null;
 	}
 	
-	public static void toggleAllBlocks(Player p) {
-		if (allBlocksPlayers.contains(p.getUniqueId())) {
-			allBlocksPlayers.remove(p.getUniqueId());
-			p.sendMessage(ChatColor.GRAY + "All blocks editing:" + ChatColor.AQUA + " OFF");
+	/** Toggles whether a player can edit all blocks or only solids
+	 * 
+	 * @param player		Toggled player
+	 */
+	public static void toggleAllBlocks(Player player) {
+		if (allBlocksPlayers.contains(player.getUniqueId())) {
+			allBlocksPlayers.remove(player.getUniqueId());
+			player.sendMessage(ChatColor.GRAY + "All blocks editing:" + ChatColor.AQUA + " OFF");
 		}
 		else {
-			allBlocksPlayers.add(p.getUniqueId());
-			p.sendMessage(ChatColor.GRAY + "All blocks editing:" + ChatColor.AQUA + " ON");
+			allBlocksPlayers.add(player.getUniqueId());
+			player.sendMessage(ChatColor.GRAY + "All blocks editing:" + ChatColor.AQUA + " ON");
 		}
 	}
 	
+	
+	/** Toggles whether a player has long range or short range
+	 * 
+	 * @param player		Toggled player
+	 */
 	public static void toggleRange(Player p) {
 		if (rangedPlayers.contains(p.getUniqueId())) {
 			rangedPlayers.remove(p.getUniqueId());
@@ -90,6 +84,30 @@ public class ToolHandler {
 		}
 	}
 	
+	/** Validates tool and register it for usage by MultiTool
+	 * 
+	 * @param tool		Tool being registered
+	 */
+	public void registerTool(Tool tool) {
+		Validate.notNull(tool, "You cannot register null tools");
+		Validate.notNull(tool.getMaterial(), "You cannot register tools without a tool material");
+		Validate.notNull(tool.getName(), "You cannot register tools with no name");
+		Validate.isTrue(!tool.getName().isEmpty(), "You cannot register tools with no name");
+		Validate.isTrue(!this.registeredTools.containsKey(tool.getMaterial()), "You cannot register multiple tools with the same material");
+		
+		this.registeredTools.put(tool.getMaterial(), tool);
+		this.plugin.getLogger().info("Registered tool: " + tool.getName());
+	}
+	
+	/** If a tool is held by player, the task of the tool will be executed
+	 * 
+	 * @param player			Player using the tool
+	 * @param itemUsed			Item stack held in hand by player
+	 * @param action			Action done by player
+	 * @param targetBlock		Task will be applied to this block
+	 * @param face				The face of targetBlock being clicked
+	 * @return					True if the PlayerInteractEvent is wanted canceled
+	 */
 	public boolean onUse(Player player, ItemStack itemUsed, Action action, Block tarBlock, BlockFace tarFace) {
 		if (registeredTools.containsKey(itemUsed.getType())) {
 			List<Block> lastBlocks = null;
@@ -127,19 +145,18 @@ public class ToolHandler {
 		return false;
 	}
 	
-	private static boolean hasPermission(final Player player) {
-		if ((player.isOp() || player.hasPermission("multitool.world."+player.getWorld().getName()))) {
-			return true;
-		} else {
-	   		player.sendMessage(ChatColor.RED + "You are not allowed to do that here!");
-	   		return false;
-		}
-	}
-	
+	/** Enum containing possible cases MultiTool may encounter
+	 */
 	enum Cases {
 		LONG_RANGE, SHORT_RANGE, ALL_LONG_RANGE, ALL_SHORT_RANGE, NO_PERMISSION;
 		
-		
+		/** Finds fitting case for the situation and checks permissions
+		 * 
+		 * @param player		Player using tool
+		 * @param tarBlock		Block getting task applied to
+		 * @param tool			Tool applying task to tarBlock
+		 * @return				The Cases enum fitting the situation
+		 */
 		public static Cases getCase(Player player, Block tarBlock, Tool tool) {
 			if (!hasPermission(player)) {
 				return NO_PERMISSION;
@@ -158,5 +175,14 @@ public class ToolHandler {
 			}
 			return NO_PERMISSION;
 	    }
+	}
+	
+	private static boolean hasPermission(final Player player) {
+		if ((player.isOp() || player.hasPermission("multitool.world."+player.getWorld().getName()))) {
+			return true;
+		} else {
+	   		player.sendMessage(ChatColor.RED + "You are not allowed to do that here!");
+	   		return false;
+		}
 	}
 }

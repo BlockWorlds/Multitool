@@ -19,15 +19,12 @@ public class PaintBrush extends Tool{
 	@Override
 	protected void setParameters() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public boolean onUse(Block targetBlock, BlockFace face, ItemStack itemUsed,
-			Player player, Action action) {
+	public boolean onUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
 				return false;
 		// TODO Auto-generated method stub
-		
 	}
 }
 

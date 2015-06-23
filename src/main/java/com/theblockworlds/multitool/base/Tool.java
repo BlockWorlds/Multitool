@@ -44,10 +44,10 @@ public abstract class Tool {
 		return items;
 	}
 	
-	/** Gets material either from config or the default value
+	/** Gets material either from config or the default material
 	 * 
 	 * @param defaultMaterial		Default material
-	 * @return					Returns material from config if material found, returns defaultValue otherwise.
+	 * @return						Material from config if material found, returns defaultMaterial otherwise
 	 */
 	protected Material cfgLoadMaterial(Material defaultMaterial){
 		String temp = pl.getConfig().getString("tools." + name.toLowerCase() + ".material");
@@ -58,6 +58,18 @@ public abstract class Tool {
 		return material;
 	}
 	
+	/** Sets default parameters used when initiating tool
+	 */
 	protected abstract void setParameters();
+	
+	/** Does task of tool help by player
+	 * 
+	 * @param targetBlock		Task will be applied to this block
+	 * @param face				The face of targetBlock being clicked
+	 * @param itemUsed			Item stack held in hand by player
+	 * @param player			Player using the tool
+	 * @param action			Action done by player
+	 * @return					True if the PlayerInteractEvent is wanted canceled
+	 */
 	public abstract boolean onUse(final Block targetBlock, final BlockFace face, final ItemStack itemUsed, final Player player, final Action action);
 }

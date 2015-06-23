@@ -35,7 +35,6 @@ public class Jackhammer extends Tool {
 		}
 		else if (callEventSuccess(targetBlock, player, true)) {
 			targetBlock.setType(Material.AIR, false);
-			return false;
 		}
 		return true;
 	}
@@ -45,7 +44,7 @@ public class Jackhammer extends Tool {
 		ItemStack items = new ItemStack(getMaterial(), 1, (short) -1);
 		ItemMeta meta = items.getItemMeta();
 		meta.setDisplayName(getName());
-		meta.setLore(Arrays.asList("Left Click to remove","Right Click to no-physics remove"));
+		meta.setLore(Arrays.asList("Left click to remove", "Right click to no-physics remove"));
 		items.setItemMeta(meta);
 		return items;
 	}
