@@ -29,31 +29,47 @@ public abstract class Tool {
 	}
 	
 	public Material getMaterial(){
-		return this.material;
+		return material;
 	}
 	
 	public String getName(){
-		return this.name;
+		return name;
 	}
 	
 	public ItemStack getItemStack() {
-		ItemStack items = new ItemStack(this.material, 1, (short) -1);
+		ItemStack items = new ItemStack(material, 1);
 		ItemMeta meta = items.getItemMeta();
-		meta.setDisplayName(this.name);
+		meta.setDisplayName(name);
 		items.setItemMeta(meta);
 		return items;
 	}
 	
-	protected Material cfgLoadMaterial(Material defaultValue){
-		String temp = pl.getConfig().getString("tools." + this.name.toLowerCase());
-		Material material = Material.getMaterial(temp == null ? null : temp.toUpperCase());
+	/** Gets material either from config or the default material
+	 * 
+	 * @param defaultMaterial		Default material
+	 * @return						Material from config if material found, returns defaultMaterial otherwise
+	 */
+	protected Material cfgLoadMaterial(Material defaultMaterial){
+		String temp = pl.getConfig().getString("tools." + name.toLowerCase() + ".material");
+		Material material = Material.matchMaterial(temp);
 		if(material == null){
-			return defaultValue;
+			return defaultMaterial;
 		} 
 		return material;
 	}
 	
+	/** Sets default parameters used when initiating tool
+	 */
 	protected abstract void setParameters();
-	public abstract void onUse(final Block targetBlock, final BlockFace face, final ItemStack itemUsed, final Player player, final Action action);
-	public abstract void onRangedUse(final Block targetBlock, final BlockFace face, final ItemStack itemUsed, final Player player, final Action action);
+	
+	/** Does task of tool help by player
+	 * 
+	 * @param targetBlock		Task will be applied to this block
+	 * @param face				The face of targetBlock being clicked
+	 * @param itemUsed			Item stack held in hand by player
+	 * @param player			Player using the tool
+	 * @param action			Action done by player
+	 * @return					True if the PlayerInteractEvent is wanted canceled
+	 */
+	public abstract boolean onUse(final Block targetBlock, final BlockFace face, final ItemStack itemUsed, final Player player, final Action action);
 }

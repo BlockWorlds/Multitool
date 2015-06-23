@@ -21,54 +21,37 @@ public class Jackhammer extends Tool {
 		super(pl);
 	}
 
+	@Override
 	protected void setParameters() {
 		setName("Jackhammer");
 		setMaterial(cfgLoadMaterial(Material.DIAMOND_PICKAXE));
 	}
 
 	@Override
-	public void onUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
-		performAction(targetBlock, face, itemUsed, player, action);
-	}
-
-	@Override
-	public void onRangedUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
-		performAction(targetBlock, face, itemUsed, player, action);
+	public boolean onUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
+		if ((action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) && callEventSuccess(targetBlock, player, false)) {
+			targetBlock.setType(Material.AIR);
+			return false;
+		}
+		else if (callEventSuccess(targetBlock, player, true)) {
+			targetBlock.setType(Material.AIR, false);
+		}
+		return true;
 	}
 	
 	@Override
 	public ItemStack getItemStack(){
-		ItemStack items = new ItemStack(this.getMaterial(), 1, (short) -1);
+		ItemStack items = new ItemStack(getMaterial(), 1, (short) -1);
 		ItemMeta meta = items.getItemMeta();
-		meta.setDisplayName(this.getName());
-		meta.setLore(Arrays.asList("Left Click to remove","Right Click to nophysics remove"));
+		meta.setDisplayName(getName());
+		meta.setLore(Arrays.asList("Left click to remove", "Right click to no-physics remove"));
 		items.setItemMeta(meta);
 		return items;
 	}
 	
-	private void performAction(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
-		if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
-			if (!callEventSuccess(targetBlock, player, false)) {
-				return;
-			}
-			targetBlock.setType(Material.AIR);
-		}
-		else {
-			if (!callEventSuccess(targetBlock, player, true)) {
-				return;
-			}
-			targetBlock.setType(Material.AIR, false);
-		}
-	}
-	
-	
 	private boolean callEventSuccess(Block targetBlock, Player player, boolean noPhysics) {
 		MultiToolDestroyEvent destroyEvent = new MultiToolDestroyEvent(targetBlock, player, noPhysics);
 		Bukkit.getPluginManager().callEvent(destroyEvent);
-        if (destroyEvent.isCancelled()) {
-            return false;
-        }
-        return true;
+        return !destroyEvent.isCancelled();
 	}
-	
 }

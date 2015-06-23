@@ -1,6 +1,11 @@
 tools:
-  jackhammer: DIAMOND_PICKAXE
-  datawrench: BONE
-  sledgehammer: GOLDEN_PICKAXE
-  paintbrush: SLIME_BALL
-  duplicator: STONE_AXE
+    jackhammer:
+        material: DIAMOND_PICKAXE
+    datawrench: 
+        material: BONE
+    sledgehammer:
+        material: GOLD_PICKAXE
+    paintbrush:
+        material: SLIME_BALL
+    duplicator:
+        material: STONE_AXE
