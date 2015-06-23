@@ -62,7 +62,7 @@ public abstract class Tool {
 	 */
 	protected abstract void setParameters();
 	
-	/** Does task of tool help by player
+	/** Does task of tool held by player
 	 * 
 	 * @param targetBlock		Task will be applied to this block
 	 * @param face				The face of targetBlock being clicked

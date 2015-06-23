@@ -41,12 +41,8 @@ public class Sledgehammer extends Tool {
 	@Override
 	public boolean onUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
 		boolean forceMove = player.isSneaking();
-		if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
-			return moveBlock(targetBlock, face, player, forceMove, true);
-		}
-		else {
-			return moveBlock(targetBlock, face, player, forceMove, false);
-		}
+		boolean push = action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK;
+		return moveBlock(targetBlock, face, player, forceMove, push);
 	}
 	
 	private boolean moveBlock(Block targetBlock, BlockFace face, Player player, boolean forceMove, boolean push) {

@@ -29,12 +29,11 @@ public class Jackhammer extends Tool {
 
 	@Override
 	public boolean onUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
-		if ((action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) && callEventSuccess(targetBlock, player, false)) {
-			targetBlock.setType(Material.AIR);
-			return false;
-		}
-		else if (callEventSuccess(targetBlock, player, true)) {
-			targetBlock.setType(Material.AIR, false);
+		boolean physics = action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK;
+		MultiToolDestroyEvent destroyEvent = new MultiToolDestroyEvent(targetBlock, player, physics);
+		Bukkit.getPluginManager().callEvent(destroyEvent);
+		if (!destroyEvent.isCancelled()) {
+			targetBlock.setType(Material.AIR, physics);
 		}
 		return true;
 	}
@@ -47,11 +46,5 @@ public class Jackhammer extends Tool {
 		meta.setLore(Arrays.asList("Left click to remove", "Right click to no-physics remove"));
 		items.setItemMeta(meta);
 		return items;
-	}
-	
-	private boolean callEventSuccess(Block targetBlock, Player player, boolean noPhysics) {
-		MultiToolDestroyEvent destroyEvent = new MultiToolDestroyEvent(targetBlock, player, noPhysics);
-		Bukkit.getPluginManager().callEvent(destroyEvent);
-        return !destroyEvent.isCancelled();
 	}
 }

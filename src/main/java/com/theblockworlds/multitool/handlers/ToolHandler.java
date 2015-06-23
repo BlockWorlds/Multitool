@@ -50,7 +50,7 @@ public class ToolHandler {
 				return t;
 			}
 		}
-	    return null;
+		return null;
 	}
 	
 	/** Toggles whether a player can edit all blocks or only solids
@@ -73,14 +73,14 @@ public class ToolHandler {
 	 * 
 	 * @param player		Toggled player
 	 */
-	public static void toggleRange(Player p) {
-		if (rangedPlayers.contains(p.getUniqueId())) {
-			rangedPlayers.remove(p.getUniqueId());
-			p.sendMessage(ChatColor.GRAY + "Long range:" + ChatColor.AQUA + " OFF");
+	public static void toggleRange(Player player) {
+		if (rangedPlayers.contains(player.getUniqueId())) {
+			rangedPlayers.remove(player.getUniqueId());
+			player.sendMessage(ChatColor.GRAY + "Long range:" + ChatColor.AQUA + " OFF");
 		}
 		else {
-			rangedPlayers.add(p.getUniqueId());
-			p.sendMessage(ChatColor.GRAY + "Long range:" + ChatColor.AQUA + " ON");
+			rangedPlayers.add(player.getUniqueId());
+			player.sendMessage(ChatColor.GRAY + "Long range:" + ChatColor.AQUA + " ON");
 		}
 	}
 	
@@ -174,7 +174,7 @@ public class ToolHandler {
 				return SHORT_RANGE;
 			}
 			return NO_PERMISSION;
-	    }
+		}
 	}
 	
 	private static boolean hasPermission(final Player player) {

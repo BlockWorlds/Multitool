@@ -9,7 +9,7 @@ import org.bukkit.event.block.BlockEvent;
 public final class MultiToolDestroyEvent extends BlockEvent implements Cancellable {
 	private static final HandlerList HANDLERS = new HandlerList();
 	private Player player;
-	private boolean noPhysics;
+	private boolean physics;
 	private boolean cancelled;
 	
 	/** Instantiate a MultiToolDestroyEvent where no-physics is false by default
@@ -22,17 +22,17 @@ public final class MultiToolDestroyEvent extends BlockEvent implements Cancellab
 		this.player = player;
 	}
 	
-	public MultiToolDestroyEvent(Block block, Player player, boolean noPhysics) {
+	public MultiToolDestroyEvent(Block block, Player player, boolean physics) {
 		this(block, player);
-		this.noPhysics = noPhysics;
+		this.physics = physics;
 	}
 	
-	public boolean isNoPhysics() {
-		return noPhysics;
+	public boolean isPhysicsOn() {
+		return physics;
 	}
 	
-	public void setNoPhyscis(boolean noPhysics) {
-		this.noPhysics = noPhysics;
+	public void setPhyscis(boolean physics) {
+		this.physics = physics;
 	}
  
 	public boolean isCancelled() {
