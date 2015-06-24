@@ -33,7 +33,7 @@ public class Sledgehammer extends Tool {
 		ItemStack items = new ItemStack(getMaterial(), 1, (short) -1);
 		ItemMeta meta = items.getItemMeta();
 		meta.setDisplayName(getName());
-		meta.setLore(Arrays.asList("Sneak to force move", "Left Click to push", "Right Click to pull"));
+		meta.setLore(Arrays.asList("Sneak to force move", "Left click to push", "Right click to pull"));
 		items.setItemMeta(meta);
 		return items;
 	}
