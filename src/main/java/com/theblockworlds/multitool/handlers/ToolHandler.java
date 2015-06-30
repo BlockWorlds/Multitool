@@ -44,10 +44,14 @@ public class ToolHandler {
 		return registeredTools.values();
 	}
 	
-	public Tool getTool(String toolName) {
-		for (Tool t : registeredTools.values()) {
-			if (t.getName().equalsIgnoreCase(toolName)) {
-				return t;
+	/** Gets the tool with the specified name
+	 * 
+	 * @param name		Name of tool without spaces
+	 */
+	public Tool getTool(String name) {
+		for (Tool tool : registeredTools.values()) {
+			if (tool.getName().replaceAll(" ", "").equalsIgnoreCase(name)) {
+				return tool;
 			}
 		}
 		return null;

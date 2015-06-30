@@ -52,7 +52,7 @@ public class MultiToolCommand extends CommandHandler {
 	private void printList(CommandSender sender){
 		sender.sendMessage(ChatColor.AQUA + "Tools:");
 		for(Tool t : pl.getToolHandler().getTools()){
-			sender.sendMessage(ChatColor.GRAY + "- " + ChatColor.AQUA + t.getName());
+			sender.sendMessage(ChatColor.GRAY + "- " + ChatColor.AQUA + t.getName().replaceAll(" ", ""));
 		}
 	}
 }
