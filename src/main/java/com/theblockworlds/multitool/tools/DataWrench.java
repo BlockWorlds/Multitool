@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import com.theblockworlds.multitool.Multitool;
 import com.theblockworlds.multitool.base.Tool;
 import com.theblockworlds.multitool.events.MultiToolDataModifyEvent;
+import com.theblockworlds.multitool.util.Utils;
 
 public class DataWrench extends Tool {
 
@@ -39,19 +40,9 @@ public class DataWrench extends Tool {
 	@SuppressWarnings("deprecation")
 	private void trySetData(Block targetBlock, int step) {
 		try {
-			targetBlock.setData(wrapAround(targetBlock.getData() + step), false);
+			targetBlock.setData(Utils.wrapAround(targetBlock.getData() + step), false);
 		}
 		catch(Exception e) {
 		}
-	}
-
-	private byte wrapAround(int number) {
-		if (number > 15) {
-			return 0;
-		}
-		else if (number < 0) {
-			return 15;
-		}
-		return (byte) number;
 	}
 }
