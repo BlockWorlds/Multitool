@@ -1,7 +1,5 @@
 package com.theblockworlds.multitool.tools;
 
-import java.util.Arrays;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -9,7 +7,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import com.theblockworlds.multitool.Multitool;
 import com.theblockworlds.multitool.base.Tool;
@@ -26,16 +23,7 @@ public class Sledgehammer extends Tool {
 	protected void setParameters() {
 		setName("Sledgehammer");
 		setMaterial(cfgLoadMaterial(Material.GOLD_PICKAXE));
-	}
-	
-	@Override
-	public ItemStack getItemStack(){
-		ItemStack items = new ItemStack(getMaterial(), 1, (short) -1);
-		ItemMeta meta = items.getItemMeta();
-		meta.setDisplayName(getName());
-		meta.setLore(Arrays.asList("Sneak to force move", "Left click to push", "Right click to pull"));
-		items.setItemMeta(meta);
-		return items;
+		setLore("Sneak to force move", "Left click to push", "Right click to pull");
 	}
 
 	@Override

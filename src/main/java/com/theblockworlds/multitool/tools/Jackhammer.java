@@ -1,7 +1,5 @@
 package com.theblockworlds.multitool.tools;
 
-import java.util.Arrays;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -9,7 +7,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import com.theblockworlds.multitool.Multitool;
 import com.theblockworlds.multitool.base.Tool;
@@ -25,6 +22,7 @@ public class Jackhammer extends Tool {
 	protected void setParameters() {
 		setName("Jackhammer");
 		setMaterial(cfgLoadMaterial(Material.DIAMOND_PICKAXE));
+		setLore("Left click to remove", "Right click to no-physics remove");
 	}
 
 	@Override
@@ -36,15 +34,5 @@ public class Jackhammer extends Tool {
 			targetBlock.setType(Material.AIR, physics);
 		}
 		return true;
-	}
-	
-	@Override
-	public ItemStack getItemStack(){
-		ItemStack items = new ItemStack(getMaterial(), 1, (short) -1);
-		ItemMeta meta = items.getItemMeta();
-		meta.setDisplayName(getName());
-		meta.setLore(Arrays.asList("Left click to remove", "Right click to no-physics remove"));
-		items.setItemMeta(meta);
-		return items;
 	}
 }
