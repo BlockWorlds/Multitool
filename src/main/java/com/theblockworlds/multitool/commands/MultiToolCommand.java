@@ -24,7 +24,7 @@ public class MultiToolCommand extends CommandHandler {
 			return true;
 		}
 		Player p = (Player) sender;
-		if (args.length == 2 && Utils.equalsIgnoreCase(args[0], "get", "give") && p.hasPermission(PERMISSIONS_PREFIX + args[1].replace(" ", "").toLowerCase())) {
+		if (args.length == 2 && Utils.equalsIgnoreCase(args[0], "get", "give") && p.hasPermission(PERMISSIONS_PREFIX + "get." + args[1].replace(" ", "").toLowerCase())) {
 			Tool tool = pl.getToolHandler().getTool(args[1]);
 			if (tool != null && tool.getItemStack() != null) {
 				p.getInventory().addItem(tool.getItemStack());
@@ -52,7 +52,7 @@ public class MultiToolCommand extends CommandHandler {
 	private void printList(CommandSender sender){
 		sender.sendMessage(ChatColor.AQUA + "Tools:");
 		for(Tool t : pl.getToolHandler().getTools()){
-			sender.sendMessage(ChatColor.GRAY + "- " + ChatColor.AQUA + t.getName());
+			sender.sendMessage(ChatColor.GRAY + "- " + ChatColor.AQUA + t.getName().replaceAll(" ", ""));
 		}
 	}
 }

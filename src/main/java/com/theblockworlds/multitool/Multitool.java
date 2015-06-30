@@ -7,6 +7,8 @@ import com.theblockworlds.multitool.util.Debugger;
 import com.theblockworlds.multitool.commands.MultiToolCommand;
 import com.theblockworlds.multitool.handlers.ToolHandler;
 import com.theblockworlds.multitool.listeners.ToolListener;
+import com.theblockworlds.multitool.tools.DataWrench;
+import com.theblockworlds.multitool.tools.Duplicator;
 import com.theblockworlds.multitool.tools.Jackhammer;
 import com.theblockworlds.multitool.tools.Sledgehammer;
 
@@ -25,10 +27,12 @@ public class Multitool extends JavaPlugin{
 		Debugger.debug("Registering tools!");
 		toolHandler.registerTool(new Jackhammer(this));
 		toolHandler.registerTool(new Sledgehammer(this));
+		toolHandler.registerTool(new Duplicator(this));
+		toolHandler.registerTool(new DataWrench(this));
 		
 		Debugger.debug("Registering MultiToolCommand!");
-		MultiToolCommand multiToolHandler = new MultiToolCommand(this);
-		this.getCommand("multitool").setExecutor(multiToolHandler);
+		MultiToolCommand commands = new MultiToolCommand(this);
+		this.getCommand("multitool").setExecutor(commands);
 		
 		Debugger.debug("Registering listeners!");
 		this.listener = new ToolListener(this);

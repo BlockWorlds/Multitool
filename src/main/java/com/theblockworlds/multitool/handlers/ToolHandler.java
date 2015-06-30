@@ -44,13 +44,17 @@ public class ToolHandler {
 		return registeredTools.values();
 	}
 	
-	public Tool getTool(String toolName) {
-		for (Tool t : registeredTools.values()) {
-			if (t.getName().equalsIgnoreCase(toolName)) {
-				return t;
+	/** Gets the tool with the specified name
+	 * 
+	 * @param name		Name of tool without spaces
+	 */
+	public Tool getTool(String name) {
+		for (Tool tool : registeredTools.values()) {
+			if (tool.getName().replaceAll(" ", "").equalsIgnoreCase(name)) {
+				return tool;
 			}
 		}
-	    return null;
+		return null;
 	}
 	
 	/** Toggles whether a player can edit all blocks or only solids
@@ -73,14 +77,14 @@ public class ToolHandler {
 	 * 
 	 * @param player		Toggled player
 	 */
-	public static void toggleRange(Player p) {
-		if (rangedPlayers.contains(p.getUniqueId())) {
-			rangedPlayers.remove(p.getUniqueId());
-			p.sendMessage(ChatColor.GRAY + "Long range:" + ChatColor.AQUA + " OFF");
+	public static void toggleRange(Player player) {
+		if (rangedPlayers.contains(player.getUniqueId())) {
+			rangedPlayers.remove(player.getUniqueId());
+			player.sendMessage(ChatColor.GRAY + "Long range:" + ChatColor.AQUA + " OFF");
 		}
 		else {
-			rangedPlayers.add(p.getUniqueId());
-			p.sendMessage(ChatColor.GRAY + "Long range:" + ChatColor.AQUA + " ON");
+			rangedPlayers.add(player.getUniqueId());
+			player.sendMessage(ChatColor.GRAY + "Long range:" + ChatColor.AQUA + " ON");
 		}
 	}
 	
@@ -174,7 +178,7 @@ public class ToolHandler {
 				return SHORT_RANGE;
 			}
 			return NO_PERMISSION;
-	    }
+		}
 	}
 	
 	private static boolean hasPermission(final Player player) {
