@@ -6,12 +6,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.theblockworlds.multitool.commands.MultiToolCommand;
 import com.theblockworlds.multitool.handlers.ToolHandler;
 import com.theblockworlds.multitool.listeners.ToolListener;
-import com.theblockworlds.multitool.tasks.PaintBrushRemover;
 import com.theblockworlds.multitool.tools.DataWrench;
 import com.theblockworlds.multitool.tools.Duplicator;
 import com.theblockworlds.multitool.tools.Jackhammer;
 import com.theblockworlds.multitool.tools.PaintBrush;
 import com.theblockworlds.multitool.tools.Sledgehammer;
+import com.theblockworlds.multitool.tasks.PaintBrushRemover;
 
 public class Multitool extends JavaPlugin {
 
