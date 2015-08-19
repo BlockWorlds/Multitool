@@ -22,7 +22,7 @@ public class Duplicator extends Tool {
 	protected void setParameters() {
 		setName("Duplicator");
 		setMaterial(cfgLoadMaterial(Material.STONE_AXE));
-		setLore("Left click to dupilcate one item", "Right click to duplicate a stack of items");
+		setLore("Left click to duplicate one item", "Right click to duplicate a stack of items");
 	}
 
 	@SuppressWarnings("deprecation")

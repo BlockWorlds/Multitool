@@ -11,8 +11,8 @@ public abstract class MultiToolEvent extends BlockEvent implements Cancellable {
 	private Player player;
 	private boolean cancelled;
 	
-	public MultiToolEvent(Block theBlock, Player player) {
-		super(theBlock);
+	public MultiToolEvent(Block block, Player player) {
+		super(block);
 		this.player = player;
 	}
 	

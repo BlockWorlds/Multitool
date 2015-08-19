@@ -23,7 +23,7 @@ public class DataWrench extends Tool {
 	protected void setParameters() {
 		setName("Data Wrench");
 		setMaterial(cfgLoadMaterial(Material.BONE));
-		setLore("Left click to scroll forwards though data values", "Left click to scroll backwards though data values");
+		setLore("Left click to scroll forwards through data values", "Left click to scroll backwards through data values");
 	}
 
 	@Override

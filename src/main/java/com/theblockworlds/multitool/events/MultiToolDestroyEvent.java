@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import com.theblockworlds.multitool.base.MultiToolEvent;
 
 public final class MultiToolDestroyEvent extends MultiToolEvent {
-	private boolean physics;
+	private final boolean physics;
 	
 	public MultiToolDestroyEvent(Block block, Player player, boolean physics) {
 		super(block, player);
@@ -15,9 +15,5 @@ public final class MultiToolDestroyEvent extends MultiToolEvent {
 	
 	public boolean isPhysicsOn() {
 		return physics;
-	}
-	
-	public void setPhyscis(boolean physics) {
-		this.physics = physics;
 	}
 }
