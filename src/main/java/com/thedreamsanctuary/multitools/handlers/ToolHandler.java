@@ -1,4 +1,4 @@
-package com.theblockworlds.multitool.handlers;
+package com.thedreamsanctuary.multitools.handlers;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,8 +17,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 
-import com.theblockworlds.multitool.Multitool;
-import com.theblockworlds.multitool.base.Tool;
+import com.thedreamsanctuary.multitools.MultiTools;
+import com.thedreamsanctuary.multitools.base.Tool;
 
 public class ToolHandler {
 	private static final String RANGED_PERMISSIONS_PREFIX = "multitool.ranged.";
@@ -29,9 +29,9 @@ public class ToolHandler {
 	private static Set<UUID> rangedPlayers = new HashSet<UUID>();
 	private static Set<UUID> allBlocksPlayers = new HashSet<UUID>();
 	private Map<Material, Tool> registeredTools = new HashMap<Material, Tool>();
-	private final Multitool plugin;
+	private final MultiTools plugin;
 	
-	public ToolHandler(Multitool pl) {
+	public ToolHandler(MultiTools pl) {
 		this.plugin = pl;
 		transparantBlocks.add(Material.AIR);
 		transparantBlocks.add(Material.STATIONARY_WATER);

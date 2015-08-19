@@ -1,4 +1,4 @@
-package com.theblockworlds.multitool.tools;
+package com.thedreamsanctuary.multitools.tools;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -8,14 +8,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 
-import com.theblockworlds.multitool.Multitool;
-import com.theblockworlds.multitool.base.Tool;
-import com.theblockworlds.multitool.events.MultiToolDataModifyEvent;
-import com.theblockworlds.multitool.util.Utils;
+import com.thedreamsanctuary.multitools.MultiTools;
+import com.thedreamsanctuary.multitools.base.Tool;
+import com.thedreamsanctuary.multitools.events.MultiToolDataModifyEvent;
+import com.thedreamsanctuary.multitools.util.Utils;
 
 public class DataWrench extends Tool {
 
-	public DataWrench(Multitool pl) {
+	public DataWrench(MultiTools pl) {
 		super(pl);
 	}
 
@@ -23,7 +23,7 @@ public class DataWrench extends Tool {
 	protected void setParameters() {
 		setName("Data Wrench");
 		setMaterial(cfgLoadMaterial(Material.BONE));
-		setLore("Left click to scroll forwards though data values", "Left click to scroll backwards though data values");
+		setLore("Left click to scroll forwards through data values", "Left click to scroll backwards through data values");
 	}
 
 	@Override

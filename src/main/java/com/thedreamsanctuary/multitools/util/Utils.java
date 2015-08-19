@@ -1,4 +1,4 @@
-package com.theblockworlds.multitool.util;
+package com.thedreamsanctuary.multitools.util;
 
 public class Utils {
 	

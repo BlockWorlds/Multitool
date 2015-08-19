@@ -1,4 +1,4 @@
-package com.theblockworlds.multitool.util;
+package com.thedreamsanctuary.multitools.util;
 
 import java.io.BufferedWriter;
 import java.io.File;

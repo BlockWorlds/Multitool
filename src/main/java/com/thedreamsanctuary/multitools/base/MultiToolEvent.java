@@ -1,4 +1,4 @@
-package com.theblockworlds.multitool.base;
+package com.thedreamsanctuary.multitools.base;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -11,8 +11,8 @@ public abstract class MultiToolEvent extends BlockEvent implements Cancellable {
 	private Player player;
 	private boolean cancelled;
 	
-	public MultiToolEvent(Block theBlock, Player player) {
-		super(theBlock);
+	public MultiToolEvent(Block block, Player player) {
+		super(block);
 		this.player = player;
 	}
 	

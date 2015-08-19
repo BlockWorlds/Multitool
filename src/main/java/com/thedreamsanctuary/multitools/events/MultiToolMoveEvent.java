@@ -1,4 +1,4 @@
-package com.theblockworlds.multitool.events;
+package com.thedreamsanctuary.multitools.events;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;

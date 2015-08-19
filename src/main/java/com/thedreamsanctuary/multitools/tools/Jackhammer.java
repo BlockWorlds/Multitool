@@ -1,4 +1,4 @@
-package com.theblockworlds.multitool.tools;
+package com.thedreamsanctuary.multitools.tools;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -8,13 +8,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 
-import com.theblockworlds.multitool.Multitool;
-import com.theblockworlds.multitool.base.Tool;
-import com.theblockworlds.multitool.events.MultiToolDestroyEvent;
+import com.thedreamsanctuary.multitools.MultiTools;
+import com.thedreamsanctuary.multitools.base.Tool;
+import com.thedreamsanctuary.multitools.events.MultiToolDestroyEvent;
 
 public class Jackhammer extends Tool {
 
-	public Jackhammer(Multitool pl) {
+	public Jackhammer(MultiTools pl) {
 		super(pl);
 	}
 

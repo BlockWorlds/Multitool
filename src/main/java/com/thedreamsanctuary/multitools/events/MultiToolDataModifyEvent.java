@@ -1,9 +1,9 @@
-package com.theblockworlds.multitool.events;
+package com.thedreamsanctuary.multitools.events;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import com.theblockworlds.multitool.base.MultiToolEvent;
+import com.thedreamsanctuary.multitools.base.MultiToolEvent;
 
 public class MultiToolDataModifyEvent extends MultiToolEvent {
 	
