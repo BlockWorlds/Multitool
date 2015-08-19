@@ -12,15 +12,15 @@ import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.thedreamsanctuary.multitools.Multitool;
+import com.thedreamsanctuary.multitools.MultiTools;
 
 public abstract class Tool {
 	private Material material;
 	private String name;
 	private List<String> lore = new ArrayList<String>();
-	private final Multitool pl;
+	private final MultiTools pl;
 	
-	public Tool(Multitool pl){
+	public Tool(MultiTools pl){
 		this.pl = pl;
 		this.setParameters();
 	}

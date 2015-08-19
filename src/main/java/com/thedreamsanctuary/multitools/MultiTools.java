@@ -13,7 +13,7 @@ import com.thedreamsanctuary.multitools.tools.Jackhammer;
 import com.thedreamsanctuary.multitools.tools.PaintBrush;
 import com.thedreamsanctuary.multitools.tools.Sledgehammer;
 
-public class Multitool extends JavaPlugin {
+public class MultiTools extends JavaPlugin {
 
 	private ToolHandler toolHandler;
 	private ToolListener listener;

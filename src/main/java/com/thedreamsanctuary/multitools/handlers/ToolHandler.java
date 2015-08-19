@@ -17,7 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 
-import com.thedreamsanctuary.multitools.Multitool;
+import com.thedreamsanctuary.multitools.MultiTools;
 import com.thedreamsanctuary.multitools.base.Tool;
 
 public class ToolHandler {
@@ -29,9 +29,9 @@ public class ToolHandler {
 	private static Set<UUID> rangedPlayers = new HashSet<UUID>();
 	private static Set<UUID> allBlocksPlayers = new HashSet<UUID>();
 	private Map<Material, Tool> registeredTools = new HashMap<Material, Tool>();
-	private final Multitool plugin;
+	private final MultiTools plugin;
 	
-	public ToolHandler(Multitool pl) {
+	public ToolHandler(MultiTools pl) {
 		this.plugin = pl;
 		transparantBlocks.add(Material.AIR);
 		transparantBlocks.add(Material.STATIONARY_WATER);

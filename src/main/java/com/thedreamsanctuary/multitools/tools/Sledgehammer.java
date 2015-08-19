@@ -8,14 +8,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 
-import com.thedreamsanctuary.multitools.Multitool;
+import com.thedreamsanctuary.multitools.MultiTools;
 import com.thedreamsanctuary.multitools.base.Tool;
 import com.thedreamsanctuary.multitools.events.MultiToolMoveEvent;
 import com.thedreamsanctuary.multitools.util.BlockDataHelper;
 
 public class Sledgehammer extends Tool {
 
-	public Sledgehammer(Multitool pl) {
+	public Sledgehammer(MultiTools pl) {
 		super(pl);
 	}
 

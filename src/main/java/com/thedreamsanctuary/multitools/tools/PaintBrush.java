@@ -15,7 +15,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.thedreamsanctuary.multitools.Multitool;
+import com.thedreamsanctuary.multitools.MultiTools;
 import com.thedreamsanctuary.multitools.base.Tool;
 import com.thedreamsanctuary.multitools.events.MultiToolPaintEvent;
 import com.thedreamsanctuary.multitools.util.BlockDataHelper;
@@ -24,7 +24,7 @@ public class PaintBrush extends Tool{
 	private static HashMap<UUID, BlockState> paintStates = new HashMap<UUID, BlockState>();
 	private static HashMap<UUID, BlockState> tossStates = new HashMap<UUID, BlockState>();
 
-	public PaintBrush(Multitool pl) {
+	public PaintBrush(MultiTools pl) {
 		super(pl);
 	}
 

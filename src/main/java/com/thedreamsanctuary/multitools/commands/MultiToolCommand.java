@@ -5,7 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.thedreamsanctuary.multitools.Multitool;
+import com.thedreamsanctuary.multitools.MultiTools;
 import com.thedreamsanctuary.multitools.base.CommandHandler;
 import com.thedreamsanctuary.multitools.base.Tool;
 import com.thedreamsanctuary.multitools.handlers.ToolHandler;
@@ -14,7 +14,7 @@ import com.thedreamsanctuary.multitools.util.Utils;
 public class MultiToolCommand extends CommandHandler {
 	private static final String PERMISSIONS_PREFIX = "multitool.commands.";
 	
-	public MultiToolCommand(Multitool pl) {
+	public MultiToolCommand(MultiTools pl) {
 		super(pl);
 	}
 

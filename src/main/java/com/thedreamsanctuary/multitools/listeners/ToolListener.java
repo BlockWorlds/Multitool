@@ -6,13 +6,13 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.thedreamsanctuary.multitools.Multitool;
+import com.thedreamsanctuary.multitools.MultiTools;
 
 public class ToolListener implements Listener{
 	
-	private final Multitool plugin;
+	private final MultiTools plugin;
 	
-	public ToolListener(Multitool pl) {
+	public ToolListener(MultiTools pl) {
 		this.plugin = pl;
 	}
 	

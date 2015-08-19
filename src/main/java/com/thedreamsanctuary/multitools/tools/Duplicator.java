@@ -8,13 +8,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 
-import com.thedreamsanctuary.multitools.Multitool;
+import com.thedreamsanctuary.multitools.MultiTools;
 import com.thedreamsanctuary.multitools.base.Tool;
 import com.thedreamsanctuary.multitools.events.MultiToolDuplicationEvent;
 
 public class Duplicator extends Tool {
 
-	public Duplicator(Multitool pl) {
+	public Duplicator(MultiTools pl) {
 		super(pl);
 	}
 
