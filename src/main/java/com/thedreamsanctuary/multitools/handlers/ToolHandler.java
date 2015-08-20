@@ -21,8 +21,8 @@ import com.thedreamsanctuary.multitools.MultiTools;
 import com.thedreamsanctuary.multitools.base.Tool;
 
 public class ToolHandler {
-	private static final String RANGED_PERMISSIONS_PREFIX = "multitool.ranged.";
-	private static final String PERMISSIONS_PREFIX = "multitool.use.";
+	private static final String RANGED_PERMISSIONS_PREFIX = "multitools.ranged.";
+	private static final String PERMISSIONS_PREFIX = "multitools.use.";
 	private static final HashSet<Material> NULL_SET = null;//Avoid deprecation
 	
 	private static HashSet<Material> transparantBlocks = new HashSet<Material>();
@@ -181,11 +181,11 @@ public class ToolHandler {
 		}
 	}
 	
-	private static boolean hasPermission(final Player player) {
-		if ((player.isOp() || player.hasPermission("multitool.world."+player.getWorld().getName()))) {
+	private static boolean hasPermission(Player player) {
+		if ((player.isOp() || player.hasPermission("multitools.world." + player.getWorld().getName()))) {
 			return true;
-		} else {
-	   		player.sendMessage(ChatColor.RED + "You are not allowed to do that here!");
+		}
+		else {
 	   		return false;
 		}
 	}

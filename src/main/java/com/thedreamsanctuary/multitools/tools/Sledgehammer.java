@@ -38,7 +38,7 @@ public class Sledgehammer extends Tool {
 		Block destinationBlock = targetBlock.getRelative(face);
 		MultiToolMoveEvent moveEvent = new MultiToolMoveEvent(targetBlock, face, player);
 		Bukkit.getPluginManager().callEvent(moveEvent);
-		if ((forceMove || destinationBlock.isEmpty()) && !moveEvent.isCancelled()) {
+		if ((forceMove || destinationBlock.isEmpty()) && !targetBlock.isEmpty() && !moveEvent.isCancelled()) {
 			BlockDataHelper.setTypeAndData(destinationBlock, targetBlock, false, true);
 			targetBlock.setType(Material.AIR, false);
 		}

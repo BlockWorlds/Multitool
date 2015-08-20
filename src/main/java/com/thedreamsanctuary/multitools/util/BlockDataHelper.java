@@ -74,7 +74,7 @@ public class BlockDataHelper {
 			Furnace valueState = (Furnace) value;
 			Furnace state = (Furnace) block.getState();
 			state.setBurnTime(valueState.getBurnTime());
-			state.setCookTime(valueState.getBurnTime());
+			state.setCookTime(valueState.getCookTime());
 			state.update(true, physics);
 		}
 		else if (value instanceof Sign) {

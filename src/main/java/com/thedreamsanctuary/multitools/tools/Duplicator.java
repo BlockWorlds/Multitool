@@ -25,11 +25,10 @@ public class Duplicator extends Tool {
 		setLore("Left click to duplicate one item", "Right click to duplicate a stack of items");
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onUse(Block targetBlock, BlockFace face, ItemStack itemUsed, Player player, Action action) {
 		boolean fullStack = action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK;
-		ItemStack stack = new ItemStack(targetBlock.getType(), fullStack ? 64 : 1, (short) targetBlock.getData());
+		ItemStack stack = targetBlock.getState().getData().toItemStack(fullStack ? 64 : 1);
 		MultiToolDuplicationEvent duplicationEvent = new MultiToolDuplicationEvent(targetBlock, player, stack);
 		Bukkit.getPluginManager().callEvent(duplicationEvent);
 		if (!duplicationEvent.isCancelled()) {
