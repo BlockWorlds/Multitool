@@ -1,52 +1,56 @@
-name: Multitool
+name: MultiTools
 version: 0.0.1-SNAPSHOT
-main: com.theblockworlds.multitool.Multitool
+main: com.thedreamsanctuary.multitools.MultiTools
 author: ShiniOfTheGami
 authors: [DukeVindzor, AceDexter]
 
 commands:
    multitool:
-     description: Manage MultiTool
+     description: Manage MultiTools
      aliases: [mt, tools]
      usage: |
       USAGE:
-      /multitool range - Toggles long range for tools
-      /multitool list - Prints list of all tools available
-      /multitool get <tool> - Gives you the specified tool
+      /multitools range - Toggles long range for tools
+      /multitools all - Toggles editing for all blocks or just solids
+      /multitools list - Prints list of all tools available
+      /multitools get <tool>|all - Gives you the specified tool
 
 permissions:
-   multitool.commands.*:
-     description: Gives access to all MultiTool features
+   multitools.commands.*:
+     description: Gives access to all MultiTools features
      children:
-       multitool.togglerange: true
-       multitool.list: true
-       multitool.get.*: true
-   multitool.command.get.*:
+       multitools.togglerange: true
+       multitools.list: true
+       multitools.get.*: true
+   multitools.command.get.*:
      description: Allows player to spawn all tools
      children:
-       multitool.get.jackhammer: true
-       multitool.get.paintbrush: true
-       multitool.get.datawrench: true
-       multitool.get.sledgehammer: true
-       multitool.get.duplicator: true
-   multitool.command.get.jackhammer:
+       multitools.get.jackhammer: true
+       multitools.get.paintbrush: true
+       multitools.get.datawrench: true
+       multitools.get.sledgehammer: true
+       multitools.get.duplicator: true
+   multitools.command.get.jackhammer:
      description: Allows player to spawn Jackhammer
      default: op
-   multitool.command.get.paintbrush:
+   multitools.command.get.paintbrush:
      description: Allows player to spawn Paint Brush
      default: op
-   multitool.command.get.datawrench:
+   multitools.command.get.datawrench:
      description: Allows player to spawn Data Wrench
      default: op
-   multitool.command.get.sledgehammer:
+   multitools.command.get.sledgehammer:
      description: Allows player to spawn Sledgehammer
      default: op
-   multitool.command.get.duplicator:
+   multitools.command.get.duplicator:
      description: Allows player to spawn Duplicator
      default: op
-   multitool.command.list:
+   multitools.command.list:
      description: Prints list of all tools available
      default: op
-   multitool.command.togglerange:
+   multitools.command.togglerange:
      description: Toggles long range for tools
+     default: op
+   multitools.command.toggleall:
+     description: Toggles editing of all blocks for tools
      default: op
